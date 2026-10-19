@@ -1,0 +1,17 @@
+# ESP32 / PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+managed_components/
+
+# ESP-IDF
+build/
+sdkconfig.old
+
+# Secrets (WiFi credentials, API keys)
+secrets.h
+secrets.ini
+
+# ESPHome
+secrets.yaml
+.esphome/

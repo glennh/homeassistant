@@ -1,0 +1,67 @@
+esphome:
+  name: esphome-cat2
+  friendly_name: ESPHome cat
+
+esp32:
+  variant: esp32c6
+  framework:
+    type: esp-idf
+
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  networks:
+    - ssid: "your ssid here"
+      password: !secret wifi_password
+    - ssid: "your ssid here"
+      password: !secret wifi_password
+  ap:
+    ssid: "esphome-cat Fallback"
+    password: "catdoor1234"
+
+i2s_audio:
+  i2s_lrclk_pin: GPIO1
+  i2s_bclk_pin: GPIO0
+
+microphone:
+  - platform: i2s_audio
+    id: door_mic
+    adc_type: external
+    i2s_din_pin: GPIO2
+    pdm: false
+    channel: left
+
+sensor:
+  - platform: sound_level
+    microphone: door_mic
+    passive: false
+    rms:
+      name: "Average Loudness"
+    peak:
+      name: "Peak Loudness"
+
+uart:
+  id: radar_uart
+  tx_pin: GPIO16
+  rx_pin: GPIO17
+  baud_rate: 256000
+  parity: NONE
+  stop_bits: 1
+
+ld2410:
+  uart_id: radar_uart
+
+binary_sensor:
+  - platform: ld2410
+    has_target:
+      name: "Radar Target"
+    has_moving_target:
+      name: "Radar Moving Target"
+    has_still_target:
+      name: "Radar Still Target"

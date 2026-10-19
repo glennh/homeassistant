@@ -1,0 +1,84 @@
+esphome:
+  name: led-bleeper
+  friendly_name: LED Bleeper
+
+esp32:
+  board: esp32-c6-devkitc-1
+  variant: esp32c6
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  networks:
+    - ssid: "your ssid here"
+      password: !secret wifi_password
+    - ssid: "your ssid here"
+      password: !secret wifi_password
+  ap:
+    ssid: "Flasher Bleaper Fallback Hotspot"
+    password: "ExrYYREgoi2L"
+
+# XIAO ESP32-C6: LED on D4 = GPIO22 (via resistor), active buzzer on D5 = GPIO23
+output:
+  - platform: gpio
+    pin: GPIO22
+    id: led_out
+  - platform: gpio
+    pin: GPIO23
+    id: buzzer_out
+
+# Master on/off for the flasher (also controllable from Home Assistant)
+switch:
+  - platform: template
+    name: "Flasher Enabled"
+    id: flasher_enabled
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    on_turn_off:
+      - output.turn_off: led_out
+      - output.turn_off: buzzer_out
+
+# Flash + beep for 150 ms once per second while enabled
+interval:
+  - interval: 1s
+    then:
+      - if:
+          condition:
+            switch.is_on: flasher_enabled
+          then:
+            - output.turn_on: led_out
+            - output.turn_on: buzzer_out
+            - delay: 150ms
+            - output.turn_off: led_out
+            - output.turn_off: buzzer_out
+
+# Physical push button on D6 = GPIO16 (to GND) turns the flasher off
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO16
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: "Button"
+    filters:
+      - delayed_on: 40ms
+    on_press:
+      - switch.turn_off: flasher_enabled
+
+# Beep once from Home Assistant
+button:
+  - platform: template
+    name: "Beep Now"
+    on_press:
+      - output.turn_on: buzzer_out
+      - delay: 300ms
+      - output.turn_off: buzzer_out

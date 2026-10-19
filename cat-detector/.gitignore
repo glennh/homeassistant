@@ -1,0 +1,17 @@
+# Build output
+dist/
+build/
+out/
+
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# Data / models
+data/
+models/
+*.weights
+*.onnx
+*.pt

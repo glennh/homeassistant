@@ -1,0 +1,20 @@
+# Build output
+dist/
+build/
+out/
+
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# Config / secrets
+config.local.*
+.env
+
+# ESPHome
+.pioenvs/
+.piolibdeps/
+secrets.yaml
+.esphome/
