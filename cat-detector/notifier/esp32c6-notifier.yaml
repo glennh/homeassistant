@@ -19,7 +19,7 @@ wifi:
   networks:
     - ssid: "your ssid here"
       password: !secret wifi_password
-    - ssid: "your ssid here"
+    - ssid: "your alternate ssid here"
       password: !secret wifi_password
   ap:
     ssid: "Flasher Bleaper Fallback Hotspot"
