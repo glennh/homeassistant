@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="840" viewBox="0 0 900 420" font-family="Arial, Helvetica, sans-serif" font-size="14">
+  <title>Cat door detector — current setup</title>
+  <desc>Live Home Assistant setup: ESP32CAM1 radar and camera, the Cat alert with camera automation, the snug LED Bleeper and phone notification.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5F5E5A"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="420" fill="#FFFFFF"/>
+
+  <text x="40" y="36" font-size="19" font-weight="bold" fill="#2C2C2A">Cat door detector — current setup</text>
+  <text x="860" y="36" text-anchor="end" font-size="11" fill="#5F5E5A">synced from Home Assistant · 2026-11-15</text>
+
+  <!-- ESP32CAM1 -->
+  <rect x="24" y="66" width="300" height="260" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+  <text x="40" y="91" font-size="15" font-weight="bold" fill="#2C2C2A">ESP32CAM1</text>
+  <text x="40" y="109" font-size="11.5" fill="#5F5E5A">Espressif ESP32 · ESPHome · kitchen</text>
+  <line x1="24" y1="121" x2="324" y2="121" stroke="#D3D1C7" stroke-width="1"/>
+
+  <text x="40" y="143" font-size="12.5" font-weight="bold" fill="#2C2C2A">mmWave radar — presence</text>
+  <text x="40" y="158" font-size="10" font-family="Consolas, 'Courier New', monospace" fill="#5F5E5A">binary_sensor.kitchen_esp32cam1_radar_target</text>
+
+  <text x="40" y="183" font-size="12.5" font-weight="bold" fill="#2C2C2A">Camera — Cat Cam 2</text>
+  <text x="40" y="198" font-size="10" font-family="Consolas, 'Courier New', monospace" fill="#5F5E5A">camera.kitchen_esp32cam1_cat_cam_2</text>
+
+  <text x="40" y="223" font-size="12.5" font-weight="bold" fill="#2C2C2A">White flash LED — used after dark</text>
+  <text x="40" y="238" font-size="10" font-family="Consolas, 'Courier New', monospace" fill="#5F5E5A">light.kitchen_esp32cam1_flash</text>
+
+  <text x="40" y="263" font-size="12.5" font-weight="bold" fill="#2C2C2A">Link</text>
+  <text x="40" y="279" font-size="11.5" fill="#5F5E5A">Wi-Fi (extender) → Home Assistant, LAN only</text>
+  <text x="40" y="304" font-size="10.5" fill="#5F5E5A">ESPHome 2026.10.2</text>
+
+  <!-- Home Assistant -->
+  <rect x="360" y="140" width="196" height="112" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.6"/>
+  <text x="458" y="165" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2C2C2A">Home Assistant</text>
+  <line x1="360" y1="176" x2="556" y2="176" stroke="#D3D1C7" stroke-width="1"/>
+  <text x="458" y="195" text-anchor="middle" font-size="11" fill="#5F5E5A">automation · Cat alert with camera</text>
+  <text x="458" y="216" text-anchor="middle" font-size="12" fill="#2C2C2A">occupancy ≥ 10 s</text>
+  <text x="458" y="234" text-anchor="middle" font-size="12" fill="#2C2C2A">1 min cooldown</text>
+
+  <!-- LED Bleeper -->
+  <rect x="596" y="66" width="280" height="112" rx="8" fill="#F1EFE8" stroke="#1D9E75" stroke-width="1.4"/>
+  <text x="612" y="91" font-size="13.5" font-weight="bold" fill="#2C2C2A">LED Bleeper · snug</text>
+  <text x="612" y="113" font-size="12" fill="#2C2C2A">bleeps 2 s, then off</text>
+  <text x="612" y="131" font-size="10" font-family="Consolas, 'Courier New', monospace" fill="#5F5E5A">switch.snug_flasher_bleaper_flasher_enabled</text>
+  <text x="612" y="152" font-size="10.5" fill="#5F5E5A">continue_on_error: an offline bleeper can't block the alert</text>
+
+  <!-- Phone -->
+  <rect x="596" y="214" width="280" height="120" rx="8" fill="#F1EFE8" stroke="#E24B4A" stroke-width="1.4"/>
+  <text x="612" y="239" font-size="13.5" font-weight="bold" fill="#2C2C2A">Phone · Glenn</text>
+  <text x="612" y="261" font-size="12" fill="#2C2C2A">push: snapshot + “Cat detected”</text>
+  <text x="612" y="279" font-size="10" font-family="Consolas, 'Courier New', monospace" fill="#5F5E5A">notify.mobile_app_glenn_phone</text>
+  <text x="612" y="299" font-size="10.5" fill="#5F5E5A">image: /local/kitchen_camera.jpg</text>
+  <text x="612" y="316" font-size="10.5" fill="#5F5E5A">channel: Cat cam</text>
+
+  <!-- Arrows -->
+  <path d="M324 196 H354" fill="none" stroke="#5F5E5A" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M556 186 H578 V112 H590" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <path d="M556 206 H578 V274 H590" fill="none" stroke="#E24B4A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+
+  <!-- Footer -->
+  <text x="450" y="372" text-anchor="middle" font-size="12.5" fill="#2C2C2A">The XIAO ESP32-C6 + INMP441 microphone is not in use. Its reference wiring is kept in README and in xiao-c6-inmp441-wiring.svg.</text>
+  <text x="450" y="394" text-anchor="middle" font-size="11" fill="#5F5E5A">Everything stays on the local network — no cloud services, no inbound internet access.</text>
+</svg>

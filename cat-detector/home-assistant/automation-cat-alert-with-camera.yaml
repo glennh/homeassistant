@@ -1,0 +1,64 @@
+# Exported from Home Assistant: automation.cat_alert_with_camera
+# config id: 1792953311058 (UI-managed; the id keeps this in sync with HA)
+alias: Cat alert with camera
+description: >-
+  Notify phone with a camera snapshot and bleep the LED Bleeper for 2 seconds
+  when the cat radar detects presence.
+id: "1792953311058"
+triggers:
+  - trigger: occupancy.detected
+    target:
+      entity_id: binary_sensor.kitchen_esp32cam1_radar_target
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+actions:
+  # 1. Bleep the LED Bleeper in the snug for 2 seconds.
+  #    continue_on_error keeps a missing/offline bleeper from blocking the phone alert.
+  - action: switch.turn_on
+    continue_on_error: true
+    target:
+      entity_id: switch.snug_flasher_bleaper_flasher_enabled
+  - delay:
+      seconds: 2
+  - action: switch.turn_off
+    continue_on_error: true
+    target:
+      entity_id: switch.snug_flasher_bleaper_flasher_enabled
+  # 2. Flash the camera light after dark so the snapshot is usable.
+  - if:
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
+    then:
+      - action: light.turn_on
+        target:
+          entity_id: light.kitchen_esp32cam1_flash
+        data:
+          brightness_pct: 30
+      - delay: "00:00:01"
+  # 3. Snapshot, switch the light back off, notify.
+  - action: camera.snapshot
+    metadata: {}
+    target:
+      entity_id: camera.kitchen_esp32cam1_cat_cam_2
+    data:
+      filename: /config/www/kitchen_camera.jpg
+  - action: light.turn_off
+    target:
+      entity_id: light.kitchen_esp32cam1_flash
+  - delay: "00:00:02"
+  - action: notify.mobile_app_glenn_phone
+    data:
+      title: Cat Cam
+      message: Cat detected
+      data:
+        image: /local/kitchen_camera.jpg
+        clickAction: /lovelace/cameras
+        channel: Cat cam
+  # 4. Cooldown: mode: single ignores new triggers while this delay runs.
+  - delay: "00:01:00"
+mode: single
