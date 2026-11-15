@@ -72,8 +72,8 @@ D2 = GPIO2. Matches `esphome/cat-door-mic.yaml` (`i2s_bclk_pin: GPIO0`,
 
 - [wiring/live-setup.png](wiring/live-setup.png) / [.svg](wiring/live-setup.svg) - current setup diagram
 - [wiring/xiao-c6-inmp441-wiring.png](wiring/xiao-c6-inmp441-wiring.png) / [.svg](wiring/xiao-c6-inmp441-wiring.svg) - mic reference wiring
-- [home-assistant/automation-cat-alert-with-camera.yaml](home-assistant/automation-cat-alert-with-camera.yaml) - live automation (export)
-- [home-assistant/automation-cat-detected-bleep.yaml](home-assistant/automation-cat-detected-bleep.yaml) - dormant mic automation (export)
+- [automations/automation-cat-alert-with-camera.yaml](automations/automation-cat-alert-with-camera.yaml) - live automation (export)
+- [automations/automation-cat-detected-bleep.yaml](automations/automation-cat-detected-bleep.yaml) - dormant mic automation (export)
 - [esphome/cat-door-mic.yaml](esphome/cat-door-mic.yaml) - mic device config (not flashed/deployed)
 - [esphome/secrets.example.yaml](esphome/secrets.example.yaml) - secret names
 - [docs/case-design.md](docs/case-design.md), [docs/flashing-and-troubleshooting.md](docs/flashing-and-troubleshooting.md)
