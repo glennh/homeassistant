@@ -7,7 +7,8 @@ Goal: tell me on my phone when the cat is at the front door meowing to come in.
 1. ESP32CAM1 (ESPHome, kitchen) watches the door with a mmWave presence radar
    (`binary_sensor.kitchen_esp32cam1_radar_target`) and a camera
    (`camera.kitchen_esp32cam1_cat_cam_2`).
-2. `automation.cat_alert_with_camera` fires after **10 s of continuous presence**.
+2. `automation.cat_alert_with_camera` fires after **10 s of continuous presence**,
+   but only between **08:00 and 22:00** (time condition), so it stays quiet overnight.
 3. On fire it:
    - bleeps the LED Bleeper in the snug for **2 s**
      (`switch.snug_flasher_bleaper_flasher_enabled`, `continue_on_error` so an

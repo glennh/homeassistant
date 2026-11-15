@@ -15,6 +15,11 @@ triggers:
         hours: 0
         minutes: 0
         seconds: 10
+conditions:
+  # Quiet hours: never fire after 22:00 or before 08:00.
+  - condition: time
+    after: "08:00:00"
+    before: "22:00:00"
 actions:
   # 1. Bleep the LED Bleeper in the snug for 2 seconds.
   #    continue_on_error keeps a missing/offline bleeper from blocking the phone alert.
