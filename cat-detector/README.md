@@ -57,7 +57,7 @@ which currently exist in HA. It last fired 2026-10-28.
 | SD | D2 (GPIO2) |
 
 Pin mapping verified against Seeed's XIAO ESP32-C6 pinout: D0 = GPIO0, D1 = GPIO1,
-D2 = GPIO2. Matches `esphome/cat-door-mic.yaml` (`i2s_bclk_pin: GPIO0`,
+D2 = GPIO2. Matches the ESPHome device config (`i2s_bclk_pin: GPIO0`,
 `i2s_lrclk_pin: GPIO1`, `i2s_din_pin: GPIO2`).
 
 ## Hardware
@@ -74,8 +74,6 @@ D2 = GPIO2. Matches `esphome/cat-door-mic.yaml` (`i2s_bclk_pin: GPIO0`,
 - [wiring/xiao-c6-inmp441-wiring.png](wiring/xiao-c6-inmp441-wiring.png) / [.svg](wiring/xiao-c6-inmp441-wiring.svg) - mic reference wiring
 - [automations/automation-cat-alert-with-camera.yaml](automations/automation-cat-alert-with-camera.yaml) - live automation (export)
 - [automations/automation-cat-detected-bleep.yaml](automations/automation-cat-detected-bleep.yaml) - dormant mic automation (export)
-- [esphome/cat-door-mic.yaml](esphome/cat-door-mic.yaml) - mic device config (not flashed/deployed)
-- [esphome/secrets.example.yaml](esphome/secrets.example.yaml) - secret names
 - [docs/case-design.md](docs/case-design.md), [docs/flashing-and-troubleshooting.md](docs/flashing-and-troubleshooting.md)
 
 ## Status
