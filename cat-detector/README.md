@@ -66,7 +66,7 @@ D2 = GPIO2. Matches the ESPHome device config (`i2s_bclk_pin: GPIO0`,
 - LED Bleeper - ESP32-C6 flasher/bleeper in ESPHome (snug)
 - Seeed Studio XIAO ESP32-C6 (board setting `esp32-c6-devkitc-1`) - not in use
 - INMP441 I2S digital microphone (assumed model) - not in use
-- Planned: 3D-printed weatherproof case, see [docs/case-design.md](docs/case-design.md)
+- Planned: 3D-printed weatherproof case
 
 ## Files
 
@@ -74,7 +74,6 @@ D2 = GPIO2. Matches the ESPHome device config (`i2s_bclk_pin: GPIO0`,
 - [wiring/xiao-c6-inmp441-wiring.png](wiring/xiao-c6-inmp441-wiring.png) / [.svg](wiring/xiao-c6-inmp441-wiring.svg) - mic reference wiring
 - [automations/automation-cat-alert-with-camera.yaml](automations/automation-cat-alert-with-camera.yaml) - live automation (export)
 - [automations/automation-cat-detected-bleep.yaml](automations/automation-cat-detected-bleep.yaml) - dormant mic automation (export)
-- [docs/case-design.md](docs/case-design.md), [docs/flashing-and-troubleshooting.md](docs/flashing-and-troubleshooting.md)
 
 ## Status
 
