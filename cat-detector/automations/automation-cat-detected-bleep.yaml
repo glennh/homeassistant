@@ -2,9 +2,10 @@
 # config id: 1792440123574 (UI-managed; the id keeps this in sync with HA)
 #
 # DORMANT: the mic is not in use, and the ESPHome cat device is not in HA, so this
-# automation's entities (sensor.esphome_cat_peak_loudness,
-# binary_sensor.esphome_cat_radar_target, the Snug flasher/bleeper) do not exist.
-# Kept as an export of what is still stored in HA; it last fired 2026-10-28.
+# automation's mic/radar entities (sensor.esphome_cat_peak_loudness,
+# binary_sensor.esphome_cat_radar_target) do not exist. The Snug flasher/bleeper
+# switch does exist, but this automation does not run. Kept as an export of what
+# is still stored in HA; it last fired 2026-10-28.
 
 alias: Cat detected - bleep
 description: >-
